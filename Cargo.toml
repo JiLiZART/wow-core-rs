@@ -1,0 +1,29 @@
+[workspace]
+resolver = "2"
+members = [ 
+  "apps/*", 
+  "packages/*", 
+]
+default-members = [
+  "apps/*",
+]
+
+[workspace.package]
+name = "wow-core-rs"
+version = "0.0.1"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Project Authors"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace.dependencies]
+serde = "1.0.8"
+tokio = { version = "1", features = ["full"] }
+wow_login_messages = { version = "0.3.0", features = ["tokio"] }
+wow_world_messages = { version = "0.1.0", features = ["tokio", "wrath"] }
+wow_srp = "0.6.0"
+mini-redis = "0.4"
+bytes = "1"
+config = { path = "./packages/config", version = "0.0.0" }
+anyhow = "1.0.79"
