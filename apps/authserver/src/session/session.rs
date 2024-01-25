@@ -2,13 +2,12 @@
 use tokio::net::{TcpStream};
 use wow_srp::normalized_string::NormalizedString;
 use wow_srp::server::{SrpProof, SrpVerifier};
-use std::collections::HashMap;
-use std::os::unix::process;
-use std::sync::{Arc, Mutex};
-use tokio::net::{TcpListener};
+
+
+
+
 use wow_login_messages::all::{
-    CMD_AUTH_LOGON_CHALLENGE_Client, 
-    CMD_AUTH_RECONNECT_CHALLENGE_Client
+    CMD_AUTH_LOGON_CHALLENGE_Client
 };
 use wow_login_messages::errors::ExpectedOpcodeError;
 use wow_login_messages::helper::{
@@ -79,7 +78,7 @@ impl AuthSession {
         println!("Login version: {}", l.protocol_version);
 
         let p = get_proof(&l.account_name);
-        let username = l.account_name;
+        let _username = l.account_name;
 
         CMD_AUTH_LOGON_CHALLENGE_Server {
             result: CMD_AUTH_LOGON_CHALLENGE_Server_LoginResult::Success {
@@ -101,7 +100,7 @@ impl AuthSession {
             .await
             .unwrap();
 
-        let (p, server_proof) = p
+        let (_p, server_proof) = p
             .into_server(
                 PublicKey::from_le_bytes(l.client_public_key).unwrap(),
                 l.client_proof,
