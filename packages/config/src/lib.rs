@@ -18,7 +18,7 @@ impl ConfigBuilder {
         let settings = Config::builder()
         // Add in `./name.toml`
 
-        .add_source(config::File::with_name(file_name.as_str()))
+        .add_source(config::File::with_name(file_name.as_str()).required(false))
         // Add in settings from the environment (with a prefix of env_name)
         .add_source(config::Environment::with_prefix(env_name))
         .build()

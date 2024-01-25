@@ -20,7 +20,10 @@ async fn main() {
     let port = config.get_or_default::<String>("port", String::from("3724"));
     let host = config.get_or_default::<String>("host", String::from("0.0.0.0"));
 
-    let listener = TcpListener::bind(host + port.as_str()).await.unwrap();
+    println!("port {}", port);
+    println!("host {}", host);
+
+    let listener = TcpListener::bind(format!("{}:{}", host, port)).await.unwrap();
 
     println!("Listening {:?}", listener.local_addr());
 
